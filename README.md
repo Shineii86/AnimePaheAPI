@@ -218,15 +218,15 @@ flowchart TD
 
 ```json
 {
-  "express": "^4.21.0",
-  "axios": "^1.8.0",
-  "cheerio": "^1.0.0",
-  "got-scraping": "^4.2.0",
-  "playwright": "^1.52.0",
-  "jsdom": "^22.1.0",
-  "compression": "^1.7.0",
-  "cors": "^2.8.0",
-  "dotenv": "^16.4.0"
+  "express": "^4.21.0",        // HTTP server
+  "axios": "^1.8.0",         // HTTP client
+  "cheerio": "^1.0.0",       // HTML parser
+  "got-scraping": "^4.2.0",  // Anti-bot HTTP client
+  "playwright": "^1.52.0",   // Browser automation
+  "jsdom": "^22.1.0",        // DOM simulation
+  "compression": "^1.7.0",   // Gzip middleware
+  "cors": "^2.8.0",          // CORS middleware
+  "dotenv": "^16.4.0"        // Environment variables
 }
 ```
 
@@ -1284,11 +1284,12 @@ Use <code>/api/scraper-status</code> to check the scraper state. It shows DDoS b
 
 - [ ] 🔐 **API key authentication** — Per-user rate limits
 - [ ] 📊 **Analytics endpoint** — Usage statistics
+- [ ] 🌙 **Dark/light mode** — Theme toggle for landing page
+- [ ] 📱 **PWA support** — Install as app on mobile
 - [ ] 🗄️ **Redis cache** — Persistent caching for serverless
 - [ ] 🔔 **Webhook notifications** — Push new episodes to Discord
 - [ ] 📦 **NPM package** — Client SDK for easy integration
 - [ ] 📘 **Swagger UI interactive docs** — API explorer
-- [ ] 🌐 **Multi-language** — Sub/dub language metadata
 
 ### ✅ Completed
 
@@ -1301,44 +1302,134 @@ Use <code>/api/scraper-status</code> to check the scraper state. It shows DDoS b
 - [x] 🔄 Smart caching with configurable TTL
 - [x] 🐳 Docker support
 - [x] ▲ Vercel/Render deployment
+- [x] 📖 Comprehensive documentation with real API data
+- [x] 🔒 Security hardening (cookie management, input sanitization)
+- [x] 🛡️ Security headers at CDN level
 
 ---
 
 ## 🤝 Contributing
 
-Contributions are welcome! Please follow these steps:
+*Contributions are welcome and appreciated! Here's how you can help:*
 
-1. 🍴 Fork the repository
-2. 🌿 Create a feature branch (`git checkout -b feature/amazing-feature`)
-3. 💾 Commit your changes (`git commit -m 'Add amazing feature'`)
-4. 🚀 Push to the branch (`git push origin feature/amazing-feature`)
-5. 📬 Open a Pull Request
+<table>
+<tr>
+<td width="25%" align="center">
+
+### 🐛 Report Bugs
+Found something broken?
+
+[Open an Issue](https://github.com/Shineii86/AnimePaheAPI/issues)
+
+</td>
+<td width="25%" align="center">
+
+### 💡 Suggest Features
+Have an idea?
+
+[Start a Discussion](https://github.com/Shineii86/AnimePaheAPI/issues)
+
+</td>
+<td width="25%" align="center">
+
+### 🔀 Submit PRs
+Ready to contribute code?
+
+[Fork & Submit](https://github.com/Shineii86/AnimePaheAPI/fork)
+
+</td>
+</tr>
+</table>
+
+### 🔄 How to Contribute
+
+```bash
+# 1️⃣ Fork the repository
+# Click the "Fork" button on GitHub
+
+# 2️⃣ Clone your fork
+git clone https://github.com/YOUR_USERNAME/AnimePaheAPI.git
+cd AnimePaheAPI
+
+# 3️⃣ Create a feature branch
+git checkout -b feature/amazing-feature
+
+# 4️⃣ Make your changes
+# Edit files, add features, fix bugs...
+
+# 5️⃣ Commit your changes
+git commit -m 'feat: add amazing feature'
+
+# 6️⃣ Push to your fork
+git push origin feature/amazing-feature
+
+# 7️⃣ Open a Pull Request
+# Go to GitHub and create a PR
+```
+
+### 📋 Guidelines
+
+- ✅ Follow the existing code style and documentation conventions
+- ✅ Write meaningful commit messages (use [conventional commits](https://www.conventionalcommits.org/))
+- ✅ Update CHANGELOG.md with your changes
+- ✅ Keep PRs focused — one feature or fix per PR
+- ✅ Add JSDoc comments for new functions
+- ❎ Don't commit `node_modules` or cache files
+- ❎ Don't add unrelated changes to a single PR
 
 ---
 
 ## 🙏 Acknowledgements
 
-- 🌸 [animepahe.ch](https://animepahe.ch) for the source data
-- 🔎 [Cheerio](https://cheerio.js.org/) for HTML parsing
-- 🎭 [Playwright](https://playwright.dev/) for browser automation
-- ⚡ [Express](https://expressjs.com/) for the web framework
-- 📺 [MiruroAPI](https://github.com/Shineii86/MiruroAPI) for README inspiration
+### 🎬 Data Sources
+
+| Source | About |
+|:---|:---|
+| [animepahe.ch](https://animepahe.ch) | Anime streaming site — source for scraping |
+
+### 🛠️ Technologies
+
+- **[Express](https://expressjs.com/)** — Fast, unopinionated web framework
+- **[Cheerio](https://cheerio.js.org/)** — Fast HTML parser
+- **[Playwright](https://playwright.dev/)** — Browser automation for DDoS bypass
+- **[Axios](https://axios-http.com/)** — Promise-based HTTP client
+- **[got-scraping](https://github.com/nicandris/got-scraping)** — Anti-bot HTTP client
+
+### 📝 Resources
+
+- [Shields.io](https://shields.io/) — Badges for README
+- [Star History](https://star-history.com/) — GitHub star history charts
+- [Capsule Render](https://github.com/kyechan99/capsule-render) — Header banner generator
 
 ---
 
 ## 📄 License
 
-MIT License - see [LICENSE](LICENSE) file.
+<div align="center">
+
+[![License: MIT](https://img.shields.io/badge/License-MIT-22c55e?style=for-the-badge&logo=mit&logoColor=white)](./LICENSE)
+
+This project is licensed under the **MIT License**.
+
+Free to use, modify, and distribute — see the [LICENSE](LICENSE) file for details.
+
+</div>
 
 ---
 
 ## 👤 Author
 
-**Shinei Nouzen** - [GitHub](https://github.com/Shineii86)
+<div align="center">
 
-<p align="center">
-  <img src="https://capsule-render.vercel.app/api?type=waving&height=100&color=gradient&text=Made%20with%20%E2%9D%A4%20by%20Shinei%20Nouzen&fontSize=12" />
-</p>
+  <b style="font-size: 5.5em;">Shinei Nouzen</b>
+  <br/>
+  <sub>Full-Stack Developer & Anime Enthusiast</sub>
+  <br/><br/>
+  <a href="https://github.com/Shineii86"><img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white" alt="GitHub"/></a>
+  <a href="https://telegram.me/Shineii86"><img src="https://img.shields.io/badge/Telegram-2CA5E0?style=for-the-badge&logo=telegram&logoColor=white" alt="Telegram"/></a>
+  <a href="https://instagram.com/ikx7.a"><img src="https://img.shields.io/badge/Instagram-C13584?style=for-the-badge&logo=instagram&logoColor=white" alt="Instagram"/></a>
+  <a href="mailto:ikx7a@hotmail.com"><img src="https://img.shields.io/badge/Email-D14836?style=for-the-badge&logo=gmail&logoColor=white" alt="Email"/></a>
+</div>
 
 ---
 
@@ -1346,9 +1437,18 @@ MIT License - see [LICENSE](LICENSE) file.
 
 <p align="center">
   <a href="https://star-history.com/#Shineii86/AnimePaheAPI&Date">
-    <picture>
-      <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=Shineii86/AnimePaheAPI&type=Date&theme=dark" />
-      <img alt="Star History Chart" src="https://api.star-history.com/svg?repos=Shineii86/AnimePaheAPI&type=Date&theme=light" />
-    </picture>
+    <img src="https://api.star-history.com/svg?repos=Shineii86/AnimePaheAPI&type=Date" alt="Star History Chart" width="100%"/>
   </a>
 </p>
+
+> ⭐ If you found this project useful, please consider giving it a star!
+
+---
+
+<div align="center">
+  <p align="center">
+    <b>Made With ❤️ For The Anime Community</b>
+    <br/><br/>
+    <sub>© Shinei Nouzen. All Rights Reserved.</sub>
+  </p>
+</div>
