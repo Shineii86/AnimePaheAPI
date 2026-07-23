@@ -1,6 +1,6 @@
 <div align="center">
-
-<img src="https://capsule-render.vercel.app/api?type=waving&height=300&color=gradient&text=AnimePaheAPI&fontAlignY=30&fontSize=100&desc=RESTful%20API%20For%20Anime%20Streaming%20Data&descSize=25" />
+  
+  <img src="https://capsule-render.vercel.app/api?type=waving&height=300&color=gradient&text=AnimePaheAPI&fontAlignY=30&fontSize=100&desc=RESTful%20API%20For%20Anime%20Streaming%20Data&descSize=25" />
 
 </div>
 
@@ -14,14 +14,15 @@
 </p>
 
 <p align="center">
-  <img src="https://img.shields.io/badge/Node.js-18+-339933?style=flat-square&logo=node.js&logoColor=white" alt="Node.js"/>
-  <img src="https://img.shields.io/badge/Express-4.x-000000?style=flat-square&logo=express&logoColor=white" alt="Express"/>
+  <img src="https://img.shields.io/badge/Node.js-20-339933?style=flat-square&logo=node.js&logoColor=white" alt="Node.js"/>
+  <img src="https://img.shields.io/badge/Express-4.21-000000?style=flat-square&logo=express&logoColor=white" alt="Express"/>
   <img src="https://img.shields.io/badge/Playwright-1.52-2EAD33?style=flat-square&logo=playwright&logoColor=white" alt="Playwright"/>
   <img src="https://img.shields.io/badge/Cheerio-1.0-3972B3?style=flat-square&logoColor=white" alt="Cheerio"/>
   <img src="https://img.shields.io/badge/Docker-Ready-2496ED?style=flat-square&logo=docker&logoColor=white" alt="Docker"/>
   <img src="https://img.shields.io/badge/Version-1.0.0-f43f8e?style=flat-square&logoColor=white" alt="Version"/>
   <img src="https://img.shields.io/badge/Endpoints-18+-6366f1?style=flat-square&logoColor=white" alt="Endpoints"/>
   <img src="https://img.shields.io/badge/Streaming-MP4%20%7C%20M3U8-22c55e?style=flat-square&logoColor=white" alt="Streaming"/>
+  <img src="https://img.shields.io/badge/License-MIT-22c55e?style=flat-square&logo=mit&logoColor=white" alt="License"/>
 </p>
 
 <p align="center">
@@ -48,7 +49,7 @@
 
 ---
 
-## Table of Contents
+## 📖 Table of Contents
 
 - [Overview](#-overview)
 - [Features](#-features)
@@ -61,6 +62,7 @@
 - [Streaming Flow](#-streaming-flow)
 - [API Response Schema](#-api-response-schema)
 - [Deployment](#-deployment)
+- [Available Scripts](#-available-scripts)
 - [Performance](#-performance)
 - [Changelog Highlights](#-changelog-highlights)
 - [Troubleshooting](#-troubleshooting)
@@ -70,41 +72,42 @@
 - [Acknowledgements](#-acknowledgements)
 - [License](#-license)
 - [Author](#-author)
+- [Star History](#-star-history)
 
 ---
 
-## Overview
+## 🌸 Overview
 
 **AnimePaheAPI** is a backend service that scrapes **animepahe.ch** and provides a clean, structured JSON API for frontend applications. It handles DDoS-Guard bypass, HTML parsing, caching, and rate limiting — so your frontend only needs simple GET requests.
 
-> No database, no auth, no complex setup. Just deploy and you have a production API.
+> 💡 No database, no auth, no complex setup. Just deploy and you have a production API.
 
 ### Why AnimePaheAPI?
 
-- **18+ API endpoints** — Complete anime data coverage
-- **Streaming URLs** — MP4 and M3U8 streaming sources extracted from iframes
-- **Automatic DDoS bypass** — Cookie management via Playwright browser
-- **Multi-strategy HTTP** — got-scraping + axios + Playwright fallback
-- **HTML scraping fallback** — Works even when API endpoints are blocked
-- **Smart caching** — In-memory cache with per-endpoint TTL
-- **Deploy anywhere** — Vercel, Render, Railway, Docker, or standalone
+- 🎬 **18+ API Endpoints** — Complete anime data coverage
+- 🎥 **Streaming URLs** — MP4 and M3U8 streaming sources extracted from iframes
+- 🛡️ **Automatic DDoS bypass** — Cookie management via Playwright browser
+- 🌐 **Multi-strategy HTTP** — got-scraping + axios + Playwright fallback
+- 🔍 **HTML scraping fallback** — Works even when API endpoints are blocked
+- ⚡ **Smart caching** — In-memory cache with per-endpoint TTL
+- 🚀 **Deploy anywhere** — Vercel, Render, Railway, Docker, or standalone
 
 ### How It Works
 
 ```mermaid
 flowchart TD
-    A["Client Request"] --> B["Express Server<br/>CORS + Security + Rate Limit"]
-    B --> C{"Cache Check<br/>(In-Memory Map)"}
-    C -- HIT --> D["Return Cached<br/>~10ms"]
-    C -- MISS --> E{"Which Endpoint?"}
+    A["🌐 Client Request<br/>(Browser / App / curl)"] --> B["🛡️ Express Server<br/>CORS · Security Headers · Rate Limiting"]
+    B --> C{"💾 Cache Check<br/>(In-Memory Map)"}
+    C -- HIT --> D["⚡ Return Cached Response<br/>~10ms"]
+    C -- MISS --> E{"🔍 Which Source?"}
 
-    E -- Metadata --> F["HTML Scraping<br/>animepahe.ch"]
-    E -- Streaming --> G["Iframe Extraction<br/>turbovidhls / kwik / blogger"]
+    E -- Metadata --> F["📡 HTML Scraping<br/>animepahe.ch"]
+    E -- Streaming --> G["📺 Iframe Extraction<br/>turbovidhls / kwik / blogger"]
 
-    F --> H["Cheerio Parse<br/>JSON"]
-    G --> I["Video Extract<br/>MP4 / M3U8"]
+    F --> H["🔎 Cheerio Parse<br/>JSON"]
+    G --> I["🎥 Video Extract<br/>MP4 / M3U8"]
 
-    H --> J["Cache + Respond"]
+    H --> J["💾 Cache + Respond<br/>JSON"]
     I --> J
 
     style A fill:#1e1e2e,stroke:#a78bfa,color:#f1f5f9
@@ -121,13 +124,13 @@ flowchart TD
 
 ---
 
-## Features
+## ✨ Features
 
 <table>
   <tr>
     <td>
 
-### Core
+### ⚡ Core
 - **18+ RESTful endpoints**
 - **Smart caching** with configurable TTL
 - **Gzip compression** — 30-70% smaller responses
@@ -139,7 +142,7 @@ flowchart TD
     </td>
     <td>
 
-### Data
+### 🔍 Data
 - **Full-text search** with pagination
 - **Autocomplete suggestions** for search
 - **Browse** by genre, studio, tag, category
@@ -153,7 +156,7 @@ flowchart TD
   <tr>
     <td>
 
-### Streaming
+### 📡 Streaming
 - **MP4 direct links** from turbovidhls
 - **M3U8 HLS streams** from kwik.cx
 - **Blogger embed URLs** for playback
@@ -164,7 +167,7 @@ flowchart TD
     </td>
     <td>
 
-### Reliability
+### 🛡️ Reliability
 - **DDoS-Guard bypass** via Playwright
 - **Cookie caching** for 14 days
 - **Multi-strategy HTTP client**
@@ -177,67 +180,83 @@ flowchart TD
   </tr>
 </table>
 
-### Feature Highlights
+### 🌟 Feature Highlights
 
 | Feature | Description | Status |
 |:---|:---|:---:|
-| 18+ API Endpoints | Complete anime data coverage | Done |
-| Full-Text Search | Keyword search with pagination | Done |
-| Search Suggestions | Fast autocomplete | Done |
-| Anime Info | Detailed metadata extraction | Done |
-| Episode Lists | Full episode catalog per anime | Done |
-| Streaming URLs | MP4 and M3U8 video sources | Done |
-| Browse Endpoints | Genre, studio, tag, category, A-Z | Done |
-| Seasonal Anime | Browse by season | Done |
-| Smart Caching | In-memory Map with TTL | Done |
-| DDoS Bypass | Playwright cookie management | Done |
-| Docker Support | Containerized deployment | Done |
-| Vercel Deploy | One-click serverless | Done |
+| 🎬 18+ API Endpoints | Complete anime data coverage | ✅ |
+| 🔍 Full-Text Search | Keyword search with pagination | ✅ |
+| 💡 Search Suggestions | Fast autocomplete | ✅ |
+| ℹ️ Anime Info | Detailed metadata extraction | ✅ |
+| 📺 Episode Lists | Full episode catalog per anime | ✅ |
+| 🎥 Streaming URLs | MP4 and M3U8 video sources | ✅ |
+| 🏷️ Browse Endpoints | Genre, studio, tag, category, A-Z | ✅ |
+| 📅 Seasonal Anime | Browse by season | ✅ |
+| 🔄 Smart Caching | In-memory Map with TTL | ✅ |
+| 🛡️ DDoS Bypass | Playwright cookie management | ✅ |
+| 🐳 Docker Support | Containerized deployment | ✅ |
+| ▲ Vercel Deploy | One-click serverless | ✅ |
 
 ---
 
-## Tech Stack
+## 🛠️ Tech Stack
 
 | Technology | Purpose | Version | Documentation |
 |:---|:---|:---|:---|
-| Node.js | JavaScript runtime | >= 18 | [Docs](https://nodejs.org/docs/) |
-| Express | HTTP server framework | 4.21 | [Docs](https://expressjs.com/en/4x/api.html) |
-| Axios | HTTP client | 1.8 | [Docs](https://axios-http.com/docs/intro) |
-| got-scraping | Anti-bot HTTP client | 4.2 | [Docs](https://github.com/nicandris/got-scraping) |
-| Cheerio | HTML parser | 1.0 | [Docs](https://cheerio.js.org/) |
-| Playwright | Browser automation | 1.52 | [Docs](https://playwright.dev/) |
-| jsdom | DOM simulation | 22.1 | [Docs](https://github.com/jsdom/jsdom) |
-| compression | Gzip middleware | 1.7 | [Docs](https://github.com/expressjs/compression) |
-| cors | CORS middleware | 2.8 | [Docs](https://github.com/expressjs/cors) |
-| dotenv | Environment config | 16.4 | [Docs](https://github.com/motdotla/dotenv) |
+| 🟢 [Node.js](https://nodejs.org/) | JavaScript runtime | >= 20 | [Docs](https://nodejs.org/docs/) |
+| ⚡ [Express](https://expressjs.com/) | HTTP server framework | 4.21 | [Docs](https://expressjs.com/en/4x/api.html) |
+| 🌐 [Axios](https://axios-http.com/) | HTTP client | 1.8 | [Docs](https://axios-http.com/docs/intro) |
+| 🔧 [got-scraping](https://github.com/nicandris/got-scraping) | Anti-bot HTTP client | 4.2 | [Docs](https://github.com/nicandris/got-scraping) |
+| 🔎 [Cheerio](https://cheerio.js.org/) | HTML parser | 1.0 | [Docs](https://cheerio.js.org/) |
+| 🎭 [Playwright](https://playwright.dev/) | Browser automation | 1.52 | [Docs](https://playwright.dev/) |
+| 🌍 [jsdom](https://github.com/jsdom/jsdom) | DOM simulation | 22.1 | [Docs](https://github.com/jsdom/jsdom) |
+| 📦 [compression](https://github.com/expressjs/compression) | Gzip middleware | 1.7 | [Docs](https://github.com/expressjs/compression) |
+| 🔒 [cors](https://github.com/expressjs/cors) | CORS middleware | 2.8 | [Docs](https://github.com/expressjs/cors) |
+| 🔧 [dotenv](https://github.com/motdotla/dotenv) | Environment config | 16.4 | [Docs](https://github.com/motdotla/dotenv) |
+
+### 📦 Key Dependencies
+
+```json
+{
+  "express": "^4.21.0",
+  "axios": "^1.8.0",
+  "cheerio": "^1.0.0",
+  "got-scraping": "^4.2.0",
+  "playwright": "^1.52.0",
+  "jsdom": "^22.1.0",
+  "compression": "^1.7.0",
+  "cors": "^2.8.0",
+  "dotenv": "^16.4.0"
+}
+```
 
 ---
 
-## Architecture
+## 🏗️ Architecture
 
 ### Request Flow
 
 | Stage | Component | Description |
 |:-----:|-----------|-------------|
-| 1 | **Client** | Browser, app, or `curl` sends request |
-| 2 | **Express Server** | Routes request, applies CORS + security headers + rate limiting |
-| 3 | **Cache Check** | In-memory Map with TTL — hit = instant response |
-| 4 | **Fetch Data** | HTML scraping or iframe extraction from animepahe.ch |
-| 5 | **Parse** | Cheerio extracts structured data from DOM |
-| 6 | **Cache + Respond** | Store in cache, return JSON response |
+| 1 | **🌐 Client** | Browser, app, or `curl` sends request |
+| 2 | **🛡️ Express Server** | Routes request, applies CORS + security headers + rate limiting |
+| 3 | **💾 Cache Check** | In-memory Map with TTL — hit = instant response |
+| 4 | **📡 Fetch Data** | HTML scraping or iframe extraction from animepahe.ch |
+| 5 | **🔎 Parse** | Cheerio extracts structured data from DOM |
+| 6 | **💾 Cache + Respond** | Store in cache, return JSON response |
 
 ### Streaming Architecture
 
 ```mermaid
 flowchart TD
-    A["GET /api/play/:slug"] --> B["Fetch Episode Page<br/>animepahe.ch/{slug}/"]
-    B --> C["Extract Iframe URL"]
-    C --> D{"Detect Host"}
-    D -- turbovidhls --> E["Extract MP4<br/>Direct URL"]
-    D -- kwik.cx --> F["VM Sandbox<br/>M3U8 Extraction"]
-    D -- blogger --> G["Return Embed URL<br/>(needs Playwright)"]
-    D -- unknown --> H["Generic Regex<br/>Fallback"]
-    E --> I["Return JSON"]
+    A["GET /api/play/:slug"] --> B["📄 Fetch Episode Page<br/>animepahe.ch/{slug}/"]
+    B --> C["🔗 Extract Iframe URL"]
+    C --> D{"🔍 Detect Host"}
+    D -- turbovidhls --> E["🎥 Extract MP4<br/>Direct URL"]
+    D -- kwik.cx --> F["🖥️ VM Sandbox<br/>M3U8 Extraction"]
+    D -- blogger --> G["📋 Return Embed URL<br/>(needs Playwright)"]
+    D -- unknown --> H["🔄 Generic Regex<br/>Fallback"]
+    E --> I["✅ Return JSON"]
     F --> I
     G --> I
     H --> I
@@ -257,14 +276,14 @@ flowchart TD
 
 ```mermaid
 flowchart TD
-    A["Request Arrives"] --> B["Try axios + cached cookies<br/>(fast, ~50ms)"]
-    B -- 200 OK --> C["Return Data"]
-    B -- 403 / DDoS --> D["Try got-scraping<br/>TLS fingerprint spoofing"]
+    A["🌐 Request Arrives"] --> B["⚡ Try axios + cached cookies<br/>(fast, ~50ms)"]
+    B -- 200 OK --> C["✅ Return Data"]
+    B -- 403 / DDoS --> D["🔧 Try got-scraping<br/>TLS fingerprint spoofing"]
     D -- 200 OK --> C
-    D -- Challenge --> E["Launch Playwright<br/>Stealth Browser"]
-    E --> F["Wait for challenge<br/>to resolve (up to 30s)"]
-    F --> G["Extract Cookies<br/>Cache for 14 days"]
-    G --> H["Retry with fresh cookies"]
+    D -- Challenge --> E["🎭 Launch Playwright<br/>Stealth Browser"]
+    E --> F["⏳ Wait for challenge<br/>to resolve (up to 30s)"]
+    F --> G["🍪 Extract Cookies<br/>Cache for 14 days"]
+    G --> H["🔄 Retry with fresh cookies"]
     H --> C
 
     style A fill:#1e1e2e,stroke:#a78bfa,color:#f1f5f9
@@ -277,104 +296,134 @@ flowchart TD
     style H fill:#1e1e2e,stroke:#06b6d4,color:#f1f5f9
 ```
 
+### Caching Architecture
+
+```mermaid
+flowchart TD
+    A["📥 Request"] --> B{"🧠 Memory Cache<br/>(Map + TTL)"}
+    B -- HIT --> C["⚡ Return Cached<br/>~10ms"]
+    B -- MISS --> D["📡 Fetch from<br/>animepahe.ch"]
+    D --> E["🔎 Parse HTML<br/>Cheerio + JSDOM"]
+    E --> F["💾 Cache Result<br/>(30s - 5min TTL)"]
+    F --> G["📤 Return Fresh"]
+
+    style A fill:#1e1e2e,stroke:#a78bfa,color:#f1f5f9
+    style B fill:#1e1e2e,stroke:#f43f8e,color:#f1f5f9
+    style C fill:#1e1e2e,stroke:#22c55e,color:#f1f5f9
+    style D fill:#1e1e2e,stroke:#6366f1,color:#f1f5f9
+    style E fill:#1e1e2e,stroke:#06b6d4,color:#f1f5f9
+    style F fill:#1e1e2e,stroke:#a855f7,color:#f1f5f9
+    style G fill:#1e1e2e,stroke:#22c55e,color:#f1f5f9
+```
+
+> 💡 Serverless functions have read-only filesystems except `/tmp`. The cache uses in-memory `Map` which survives across warm invocations.
+
 ---
 
-## Project Structure
+## 📁 Project Structure
 
 ```
 AnimePaheAPI/
-├── server.js                      # Express server entry point
-├── package.json                   # Dependencies & scripts
-├── vercel.json                    # Vercel deployment config
-├── render.yaml                    # Render deployment config
-├── Dockerfile                     # Docker deployment config
-├── CHANGELOG.md                   # Version history
-├── README.md                      # This file
+├── 📄 server.js                            # 🚀 Express server entry point
+├── 📦 package.json                         # 📦 Dependencies & scripts
+├── ▲ vercel.json                           # ▲ Vercel routing config
+├── 📄 render.yaml                          # 🔴 Render deployment config
+├── 🐳 Dockerfile                           # 🐳 Docker support
+├── 📝 CHANGELOG.md                         # 📝 Version history
+├── 📖 README.md                            # 📖 This file
 │
-├── public/
-│   └── index.html                 # Landing page
+├── 📂 public/                              # 🌐 Static files
+│   └── 📄 index.html                       #    🌐 Landing page
 │
-└── src/
-    ├── configs/
-    │   ├── dataUrl.js             # URL patterns for animepahe.ch
-    │   └── header.config.js       # Browser request headers
+└── 📂 src/                                 # ⚙️ Core logic
+    ├── 📂 configs/                         #    ⚙️ Configuration
+    │   ├── 📄 dataUrl.js                   #       🔗 URL patterns
+    │   └── 📄 header.config.js             #       📋 Browser headers
     │
-    ├── extractors/
-    │   ├── home.extractor.js      # Homepage data extraction
-    │   ├── search.extractor.js    # Search results extraction
-    │   ├── info.extractor.js      # Anime detail extraction
-    │   ├── episodes.extractor.js  # Episode list extraction
-    │   └── series.extractor.js    # Series/browse page extraction
+    ├── 📂 extractors/                      #    🔎 Data extractors
+    │   ├── 📄 home.extractor.js            #       🌐 Homepage extraction
+    │   ├── 📄 search.extractor.js          #       🔍 Search results
+    │   ├── 📄 info.extractor.js            #       ℹ️ Anime details
+    │   ├── 📄 episodes.extractor.js        #       📺 Episode lists
+    │   └── 📄 series.extractor.js          #       📋 Series/browse pages
     │
-    ├── helper/
-    │   ├── cache.helper.js        # In-memory cache with TTL
-    │   └── error.helper.js        # Custom error class + handler
+    ├── 📂 helper/                          #    🛠️ Helpers
+    │   ├── 📄 cache.helper.js              #       💾 In-memory cache
+    │   └── 📄 error.helper.js              #       ❌ Error handler
     │
-    ├── middleware/
-    │   └── creatorInfo.js         # Creator attribution middleware
+    ├── 📂 middleware/                       #    🔒 Middleware
+    │   └── 📄 creatorInfo.js               #       👤 Creator attribution
     │
-    ├── models/
-    │   └── playModel.js           # Streaming URL extraction
+    ├── 📂 models/                          #    🎬 Models
+    │   └── 📄 playModel.js                 #       🎥 Streaming extraction
     │
-    ├── routes/
-    │   └── apiRoutes.js           # All API endpoints
+    ├── 📂 routes/                          #    🛤️ Routes
+    │   └── 📄 apiRoutes.js                 #       🌐 18+ endpoints
     │
-    ├── scrapers/
-    │   └── animepahe.js           # Core scraper with cookie mgmt
+    ├── 📂 scrapers/                        #    🕷️ Scrapers
+    │   └── 📄 animepahe.js                 #       🕷️ Core scraper + DDoS bypass
     │
-    └── utils/
-        ├── browser.js             # Playwright launcher + stealth
-        ├── config.js              # Environment config + URLs
-        ├── requestManager.js      # Multi-strategy HTTP client
-        ├── jsParser.js            # JavaScript variable extraction
-        ├── dataProcessor.js       # API response normalization
-        └── urlConverter.js        # URL conversion utilities
+    └── 📂 utils/                           #    🔧 Utilities
+        ├── 📄 browser.js                   #       🎭 Playwright launcher
+        ├── 📄 config.js                    #       ⚙️ Environment config
+        ├── 📄 requestManager.js            #       🌐 Multi-strategy HTTP
+        ├── 📄 jsParser.js                  #       📝 JS variable extraction
+        ├── 📄 dataProcessor.js             #       📊 Response normalization
+        └── 📄 urlConverter.js              #       🔗 URL conversion
 ```
 
 ---
 
-## Quick Start
+## 🚀 Quick Start
 
 ### Prerequisites
 
 | Requirement | Minimum | Recommended |
 |:---|:---|:---|
-| Node.js | 18.x | 20.x LTS |
-| npm | 9.0+ | 10.x |
-| OS | Windows, macOS, Linux | Any |
+| 📦 Node.js | 18.x | 20.x LTS |
+| 📦 npm | 9.0+ | 10.x |
+| 💻 OS | Windows, macOS, Linux | Any |
 
-### Installation
+### 🔧 Installation
 
 ```bash
-# 1. Clone the repository
+# 1️⃣ Clone the repository
 git clone https://github.com/Shineii86/AnimePaheAPI.git
 cd AnimePaheAPI
 
-# 2. Install dependencies
+# 2️⃣ Install dependencies
 npm install
 
-# 3. Install Chromium for Playwright (required for DDoS bypass)
+# 3️⃣ Install Chromium for Playwright (required for DDoS bypass)
 npx playwright install chromium
 
-# 4. Start the server
+# 4️⃣ Start the server
 npm start
 
-# Server runs at http://localhost:3000
+# 🌐 Server runs at http://localhost:3000
 ```
 
-### Alternative Package Managers
+> 🌐 Open [http://localhost:3000](http://localhost:3000) in your browser.
+
+### 🐳 Alternative Package Managers
 
 ```bash
 # Using yarn
-yarn install && yarn start
+yarn install
+yarn start
 
 # Using pnpm
-pnpm install && pnpm start
+pnpm install
+pnpm start
+
+# Using bun
+bun install
+bun start
 ```
 
 ---
 
-## Configuration
+## ⚙️ Configuration
 
 ### Environment Variables
 
@@ -393,16 +442,16 @@ pnpm install && pnpm start
 
 | Endpoint | TTL | Rationale |
 |:---|:---|:---|
-| Suggestions | 30s | Autocomplete needs fresh results |
-| Search | 60s | Results change as new anime air |
-| Episodes | 60s | New episodes drop frequently |
-| Home | 120s | Balanced freshness/performance |
-| Info | 300s | Anime details rarely change |
-| A-Z / Season / Genre | 180s | Static catalog data |
+| 💡 Suggestions | 30s | Autocomplete needs fresh results |
+| 🔍 Search | 60s | Results change as new anime air |
+| 📺 Episodes | 60s | New episodes drop frequently |
+| 🌐 Home | 120s | Balanced freshness/performance |
+| ℹ️ Info | 300s | Anime details rarely change |
+| 🏷️ A-Z / Season / Genre | 180s | Static catalog data |
 
 ---
 
-## API Endpoints
+## 📡 API Endpoints
 
 ### Base URL
 ```
@@ -419,18 +468,65 @@ All endpoints return:
 }
 ```
 
----
+### 📺 Streaming Flow
 
-> ## GET Home Page
+To get a stream URL, follow these 3 steps:
 
 ```bash
-GET /api
+# Step 1: Get episode list
+curl "http://localhost:3000/api/episodes/one-piece"
+# => results[0].slug = "one-piece-episode-1170-english-subbed"
+
+# Step 2: Get streaming sources
+curl "http://localhost:3000/api/play/one-piece-episode-1170-english-subbed"
+# => sources[0].url = "https://...mp4" or "https://...m3u8"
+
+# Step 3: Play in browser or video player
 ```
 
-Returns homepage data: latest releases, trending, and popular anime.
+### 🎥 HLS Player Example
+
+```html
+<script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+<video id="player" controls></video>
+<script>
+  const video = document.getElementById('player');
+  const streamUrl = 'https://...m3u8'; // From /api/play response
+
+  if (Hls.isSupported()) {
+    const hls = new Hls();
+    hls.loadSource(streamUrl);
+    hls.attachMedia(video);
+  } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
+    video.src = streamUrl; // Native HLS (Safari)
+  }
+</script>
+```
+
+---
+
+> ## 🌐 GET Home Page
+
+### Endpoint
 
 ```bash
-curl http://localhost:3000/api
+/
+```
+
+#### Parameters
+
+> No parameters required.
+
+#### Example of request
+
+```bash
+curl "http://localhost:3000/api"
+```
+
+```javascript
+import axios from "axios";
+const resp = await axios.get("http://localhost:3000/api");
+console.log(resp.data);
 ```
 
 #### Sample Response
@@ -457,19 +553,33 @@ curl http://localhost:3000/api
 
 ---
 
-> ## GET Search
+> ## 🔍 GET Search
+
+### Endpoint
 
 ```bash
-GET /api/search?q={query}&page={page}
+/search
 ```
 
-| Parameter | Type | Required | Default | Description |
-|:---:|:---:|:---:|:---:|:---|
-| `q` | `string` | Yes | — | Search query |
+#### Parameters
+
+| Parameter | Type | Mandatory | Default | Description |
+| :-------: | :--: | :-------: | :-----: | :---------: |
+| `q` | `string` | Yes ✔️ | — | Search keyword |
 | `page` | `number` | No | `1` | Page number |
+
+#### Example of request
 
 ```bash
 curl "http://localhost:3000/api/search?q=naruto&page=1"
+```
+
+```javascript
+import axios from "axios";
+const resp = await axios.get("http://localhost:3000/api/search", {
+  params: { q: "naruto", page: 1 }
+});
+console.log(resp.data);
 ```
 
 #### Sample Response
@@ -497,34 +607,72 @@ curl "http://localhost:3000/api/search?q=naruto&page=1"
 
 ---
 
-> ## GET Search Suggestions
+> ## 💡 GET Search Suggestions
+
+### Endpoint
 
 ```bash
-GET /api/suggestions?q={query}
+/suggestions
 ```
 
-| Parameter | Type | Required | Default | Description |
-|:---:|:---:|:---:|:---:|:---|
-| `q` | `string` | Yes | — | Search query (min 2 chars) |
+#### Parameters
+
+| Parameter | Type | Mandatory | Default | Description |
+| :-------: | :--: | :-------: | :-----: | :---------: |
+| `q` | `string` | Yes ✔️ | — | Search keyword (min 2 chars) |
+
+#### Example of request
 
 ```bash
 curl "http://localhost:3000/api/suggestions?q=nar"
 ```
 
----
-
-> ## GET Anime Info
-
-```bash
-GET /api/info/{slug}
+```javascript
+import axios from "axios";
+const resp = await axios.get("http://localhost:3000/api/suggestions", {
+  params: { q: "nar" }
+});
+console.log(resp.data);
 ```
 
-| Parameter | Type | Required | Description |
-|:---:|:---:|:---:|:---|
-| `slug` | `string` | Yes | Anime slug |
+#### Sample Response
+
+```json
+{
+  "success": true,
+  "results": [
+    { "slug": "naruto", "title": "Naruto", "poster": "https://..." },
+    { "slug": "naruto-shippuden", "title": "Naruto: Shippuden", "poster": "https://..." }
+  ]
+}
+```
+
+---
+
+> ## ℹ️ GET Anime Info
+
+### Endpoint
 
 ```bash
-curl http://localhost:3000/api/info/one-piece
+/info/:slug
+```
+
+#### Parameters
+
+| Parameter | Type | Mandatory | Default | Description |
+| :-------: | :--: | :-------: | :-----: | :---------: |
+| `slug` | `string` | Yes ✔️ | — | Anime slug |
+
+#### Example of request
+
+```bash
+curl "http://localhost:3000/api/info/one-piece"
+```
+
+```javascript
+import axios from "axios";
+const resp = await axios.get("http://localhost:3000/api/info/one-piece");
+console.log(resp.data);
 ```
 
 #### Sample Response
@@ -550,18 +698,30 @@ curl http://localhost:3000/api/info/one-piece
 
 ---
 
-> ## GET Episodes
+> ## 📺 GET Episodes
+
+### Endpoint
 
 ```bash
-GET /api/episodes/{slug}
+/episodes/:slug
 ```
 
-| Parameter | Type | Required | Description |
-|:---:|:---:|:---:|:---|
-| `slug` | `string` | Yes | Anime slug |
+#### Parameters
+
+| Parameter | Type | Mandatory | Default | Description |
+| :-------: | :--: | :-------: | :-----: | :---------: |
+| `slug` | `string` | Yes ✔️ | — | Anime slug |
+
+#### Example of request
 
 ```bash
-curl http://localhost:3000/api/episodes/one-piece
+curl "http://localhost:3000/api/episodes/one-piece"
+```
+
+```javascript
+import axios from "axios";
+const resp = await axios.get("http://localhost:3000/api/episodes/one-piece");
+console.log(resp.data);
 ```
 
 #### Sample Response
@@ -582,18 +742,30 @@ curl http://localhost:3000/api/episodes/one-piece
 
 ---
 
-> ## GET Streaming Links
+> ## 🎥 GET Streaming Links
+
+### Endpoint
 
 ```bash
-GET /api/play/{slug}
+/play/:slug
 ```
 
-| Parameter | Type | Required | Description |
-|:---:|:---:|:---:|:---|
-| `slug` | `string` | Yes | Episode slug |
+#### Parameters
+
+| Parameter | Type | Mandatory | Default | Description |
+| :-------: | :--: | :-------: | :-----: | :---------: |
+| `slug` | `string` | Yes ✔️ | — | Episode slug |
+
+#### Example of request
 
 ```bash
-curl http://localhost:3000/api/play/thunder-3-episode-3-english-subbed
+curl "http://localhost:3000/api/play/thunder-3-episode-3-english-subbed"
+```
+
+```javascript
+import axios from "axios";
+const resp = await axios.get("http://localhost:3000/api/play/thunder-3-episode-3-english-subbed");
+console.log(resp.data);
 ```
 
 #### Sample Response (MP4)
@@ -642,30 +814,36 @@ curl http://localhost:3000/api/play/thunder-3-episode-3-english-subbed
 
 ---
 
-> ## GET Browse Endpoints
+> ## 🏷️ GET Browse Endpoints
+
+### Endpoint
 
 ```bash
-GET /api/genre/{name}
-GET /api/studio/{name}
-GET /api/tag/{name}
-GET /api/category/{name}
-GET /api/az-list
-GET /api/season
-GET /api/series
+/genre/:name
+/studio/:name
+/tag/:name
+/category/:name
+/az-list
+/season
+/series
 ```
 
-| Endpoint | Description |
-|:---|:---|
-| `/api/genre/action` | Browse anime by genre |
-| `/api/studio/madhouse` | Browse anime by studio |
-| `/api/tag/adventure` | Browse anime by tag |
-| `/api/category/action` | Browse by category |
-| `/api/az-list` | A-Z alphabetical listing |
-| `/api/season` | Seasonal anime |
-| `/api/series` | Full series catalog |
+#### Parameters
+
+| Parameter | Type | Mandatory | Default | Description |
+| :-------: | :--: | :-------: | :-----: | :---------: |
+| `name` | `string` | Yes ✔️ | — | Genre/studio/tag/category name |
+
+#### Example of request
 
 ```bash
-curl http://localhost:3000/api/genre/action
+curl "http://localhost:3000/api/genre/action"
+```
+
+```javascript
+import axios from "axios";
+const resp = await axios.get("http://localhost:3000/api/genre/action");
+console.log(resp.data);
 ```
 
 #### Sample Response
@@ -692,24 +870,28 @@ curl http://localhost:3000/api/genre/action
 
 ---
 
-> ## GET Utility Endpoints
+> ## 🏥 GET Health Check
+
+### Endpoint
 
 ```bash
-GET /api/health
-GET /api/stats
-GET /api/scraper-status
-GET /api/docs
+/health
 ```
 
-| Endpoint | Description |
-|:---|:---|
-| `/api/health` | Health check with uptime |
-| `/api/stats` | Cache & server statistics |
-| `/api/scraper-status` | Scraper state info |
-| `/api/docs` | OpenAPI documentation |
+#### Parameters
+
+> No parameters required.
+
+#### Example of request
 
 ```bash
-curl http://localhost:3000/api/health
+curl "http://localhost:3000/api/health"
+```
+
+```javascript
+import axios from "axios";
+const resp = await axios.get("http://localhost:3000/api/health");
+console.log(resp.data);
 ```
 
 #### Sample Response
@@ -729,9 +911,76 @@ curl http://localhost:3000/api/health
 
 ---
 
-## Streaming Flow
+> ## 📊 GET Stats
 
-To get a stream URL, follow these steps:
+### Endpoint
+
+```bash
+/stats
+```
+
+#### Parameters
+
+> No parameters required.
+
+#### Example of request
+
+```bash
+curl "http://localhost:3000/api/stats"
+```
+
+```javascript
+import axios from "axios";
+const resp = await axios.get("http://localhost:3000/api/stats");
+console.log(resp.data);
+```
+
+#### Sample Response
+
+```json
+{
+  "success": true,
+  "results": {
+    "uptime": "2h 15m 30s",
+    "requests": { "total": 156, "errors": 3, "successRate": "98.1%" },
+    "cache": { "size": 12, "maxSize": 100, "ttl": "1-5 min" },
+    "endpoints": 18,
+    "timestamp": "2026-07-23T12:00:00.000Z"
+  }
+}
+```
+
+---
+
+> ## 🕷️ GET Scraper Status
+
+### Endpoint
+
+```bash
+/scraper-status
+```
+
+#### Parameters
+
+> No parameters required.
+
+#### Example of request
+
+```bash
+curl "http://localhost:3000/api/scraper-status"
+```
+
+```javascript
+import axios from "axios";
+const resp = await axios.get("http://localhost:3000/api/scraper-status");
+console.log(resp.data);
+```
+
+---
+
+## 🎬 Streaming Flow
+
+To get a stream URL, follow these 3 steps:
 
 ```bash
 # Step 1: Get episode list
@@ -743,18 +992,19 @@ curl "http://localhost:3000/api/play/one-piece-episode-1170-english-subbed"
 # => sources[0].url = "https://...mp4" or "https://...m3u8"
 
 # Step 3: Play in browser or video player
+# Use hls.js, video.js, or native <video> with hls support
 ```
 
-### Supported Video Hosts
+### 📺 Supported Video Hosts
 
 | Host | Type | Extraction Method | Status |
 |:---|:---|:---|:---:|
-| turbovidhls / etvp | MP4 | Direct regex from iframe HTML | Working |
-| kwik.cx | M3U8 | VM sandbox with mock Hls/Plyr | Working |
-| blogger.com | Embed | Returns iframe URL | Partial |
-| unknown | Any | Generic regex fallback | Fallback |
+| 🎥 turbovidhls / etvp | MP4 | Direct regex from iframe HTML | ✅ Working |
+| 🎬 kwik.cx | M3U8 | VM sandbox with mock Hls/Plyr | ✅ Working |
+| 📋 blogger.com | Embed | Returns iframe URL | ⚠️ Partial |
+| 🔄 unknown | Any | Generic regex fallback | 🔄 Fallback |
 
-### HLS Player Example
+### 🎥 HLS Player Example
 
 ```html
 <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
@@ -762,7 +1012,7 @@ curl "http://localhost:3000/api/play/one-piece-episode-1170-english-subbed"
 <script>
   const video = document.getElementById('player');
   const streamUrl = 'https://...m3u8'; // From /api/play response
-
+  
   if (Hls.isSupported()) {
     const hls = new Hls();
     hls.loadSource(streamUrl);
@@ -775,7 +1025,7 @@ curl "http://localhost:3000/api/play/one-piece-episode-1170-english-subbed"
 
 ---
 
-## API Response Schema
+## 📋 API Response Schema
 
 ### Success Response
 ```json
@@ -825,23 +1075,28 @@ curl "http://localhost:3000/api/play/one-piece-episode-1170-english-subbed"
 
 ---
 
-## Deployment
+## 🌐 Deployment
 
-### Vercel (Recommended)
+### ▲ Vercel (Recommended)
 
 [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/Shineii86/AnimePaheAPI)
 
 1. Click the button above (or import manually on vercel.com)
-2. Vercel auto-detects the project — no config needed
-3. Your API is live!
+2. Vercel auto-detects the project — **no config needed**
+3. Your API is live! 🎉
 
-### Render
+```bash
+# Or use Vercel CLI
+npx vercel --prod
+```
+
+### 🔴 Render
 
 1. Connect your GitHub repo on [render.com](https://render.com)
 2. Build Command: `npm install`
 3. Start Command: `npm start`
 
-### Docker
+### 🐳 Docker
 
 ```bash
 # Build
@@ -851,7 +1106,7 @@ docker build -t animepaheapi .
 docker run -p 3000:3000 animepaheapi
 ```
 
-### Standalone Server
+### 🖥️ Standalone Server
 
 ```bash
 # Clone and install
@@ -865,137 +1120,235 @@ npm start
 
 ---
 
-## Performance
+## 📜 Available Scripts
 
-| Metric | Value |
-|:---|:---|
-| Cold start | ~500ms |
-| Warm response | ~50-200ms |
-| Cache hit | ~10ms |
-| Cache TTL | 30s - 5min |
-| Rate limit | 100 req/min/IP |
+| Command | Description | Details |
+|:---|:---|:---|
+| `npm start` | 🚀 Start production server | `node server.js` |
 
 ---
 
-## Changelog Highlights
+## ⚡ Performance
+
+| Metric | Value |
+|:---|:---|
+| ⚡ Cold start | ~500ms |
+| 🔄 Warm response | ~50-200ms |
+| 💾 Cache hit | ~10ms |
+| 💾 Cache TTL | 30s - 5min |
+| ⏱️ Rate limit | 100 req/min/IP |
+| 💻 Memory usage | ~30MB |
+| 📦 Cache max size | 100 entries |
+
+### 🔧 Optimization Features
+
+- 💾 **In-memory cache** — Map-based with TTL expiration
+- 🎭 **Multi-strategy HTTP** — got-scraping + axios + Playwright fallback
+- 🔎 **HTML scraping** — Efficient Cheerio parsing
+- 📁 **Minimal deps** — Lightweight production dependencies
+- 🔄 **Graceful fallback** — Empty arrays on error, never crashes
+
+---
+
+## 📝 Changelog Highlights
 
 | Version | Date | Key Changes |
 |:---|:---|:---|
 | **1.0.0** | 2026-07-23 | Initial release — 18+ endpoints, streaming MP4/M3U8, DDoS bypass, modular architecture |
 
-> See [CHANGELOG.md](./CHANGELOG.md) for the full version history.
+> 📝 See [CHANGELOG.md](./CHANGELOG.md) for the full version history.
 
 ---
 
-## Troubleshooting
+## 🔧 Troubleshooting
 
 | Problem | Cause | Solution |
 |:---|:---|:---|
-| `npm install` fails | Node.js version too old | Upgrade to Node.js 18+ |
-| CORS errors | CORS not configured | CORS is enabled by default |
-| 404 on API routes | Wrong URL format | Use `/api/` prefix |
-| Streaming 500 | Playwright not installed | Run `npx playwright install chromium` |
-| Empty episodes | DDoS-Guard blocking | Wait for cookie refresh or restart |
-| Slow first request | Cookie refresh needed | Normal — subsequent requests are fast |
+| ❌ `npm install` fails | Node.js version too old | Upgrade to Node.js 18+ (`node -v`) |
+| ❌ CORS errors | CORS not configured | CORS is enabled by default |
+| ❌ 404 on API routes | Wrong URL format | Use `/api/` prefix |
+| ❌ Streaming 500 | Playwright not installed | Run `npx playwright install chromium` |
+| ❌ Empty episodes | DDoS-Guard blocking | Wait for cookie refresh or restart |
+| ❌ Slow first request | Cookie refresh needed | Normal — subsequent requests are fast |
+| ❌ Deploy fails on Vercel | Build error | Check `node server.js` locally first |
+
+### 🎬 How to Fix Streaming Issues
+
+Streaming endpoints may fail when DDoS-Guard blocks requests. The API handles this automatically via Playwright cookie management.
+
+#### Why Does This Happen?
+
+```
+Your App → DDoS-Guard WAF → animepahe.ch → 403 Blocked
+```
+
+DDoS-Guard detects:
+- Non-browser requests
+- Missing cookies / challenge tokens
+- Datacenter IP ranges
+
+#### Fix 1: Playwright (Best — Works Out of the Box)
+
+Playwright runs a headless browser that solves DDoS-Guard challenges automatically. This is the default behavior — just install Chromium:
+
+```bash
+npx playwright install chromium
+```
+
+#### Fix 2: Manual Cookies
+
+If you have valid cookies from a browser session, set them manually:
+
+```bash
+# Get cookies from your browser's developer tools
+COOKIES="__ddg2_=abc123; __ddg2_=def456"
+```
+
+#### Fix 3: Self-Host the Entire API
+
+If you run the API on your own VPS, requests come from your IP which may not be blocked:
+
+```bash
+# Clone and install
+git clone https://github.com/Shineii86/AnimePaheAPI.git
+cd AnimePaheAPI && npm install
+
+# Start on your own server
+npm start
+# → http://your-server:3000
+```
 
 ---
 
-## FAQ
+## ❓ FAQ
 
 <details>
-<summary><b>How do I search for anime?</b></summary>
+<summary><b>🔍 How do I search for anime?</b></summary>
 <br/>
-Use <code>/api/search?q=your+search</code>. Results include title, poster, episodes, and type. For autocomplete, use <code>/api/suggestions?q=your+search</code>.
+Use <code>/api/search?q=your+search</code>. Results include title, poster, episodes, and type. For autocomplete suggestions, use <code>/api/suggestions?q=your+search</code> which returns fast suggestions.
 </details>
 
 <details>
-<summary><b>How do I get streaming URLs?</b></summary>
+<summary><b>📺 How do I get streaming URLs?</b></summary>
 <br/>
-Use <code>/api/play/:slug</code> where <code>:slug</code> is the episode slug (e.g., <code>one-piece-episode-1170-english-subbed</code>). Returns MP4 or M3U8 URLs.
+Use <code>/api/play/:slug</code> where <code>:slug</code> is the episode slug (e.g., <code>one-piece-episode-1170-english-subbed</code>). Returns MP4 or M3U8 URLs. The streaming flow is documented in detail above.
 </details>
 
 <details>
-<summary><b>Why are some episodes returning embed URLs instead of direct links?</b></summary>
+<summary><b>⚠️ Why are some episodes returning embed URLs instead of direct links?</b></summary>
 <br/>
 Blogger-hosted episodes require JavaScript execution to extract the actual video URL. Without Playwright, we return the embed URL. Install Playwright for full extraction: <code>npx playwright install chromium</code>.
 </details>
 
 <details>
-<summary><b>Can I use this in my frontend app?</b></summary>
+<summary><b>🌐 Can I use this in my frontend app?</b></summary>
 <br/>
-Yes! CORS is enabled for all origins. Just make fetch requests to the API endpoints.
+Yes! CORS is enabled for all origins. Just make fetch requests to the API endpoints. Example: <code>fetch('http://localhost:3000/api/search?q=naruto')</code>
 </details>
 
 <details>
-<summary><b>How often does the data refresh?</b></summary>
+<summary><b>🔄 How often does the data refresh?</b></summary>
 <br/>
-The cache TTL is 30s-5min depending on the endpoint. After that, the next request triggers a fresh fetch.
+The cache TTL is 30s-5min depending on the endpoint. After that, the next request triggers a fresh fetch from animepahe.ch.
 </details>
 
 <details>
-<summary><b>Can I self-host this?</b></summary>
+<summary><b>🖥️ Can I self-host this?</b></summary>
 <br/>
-Yes! Use <code>npm start</code> to run the Express server on any VPS, Docker container, or PaaS.
+Yes! Use <code>npm start</code> to run the Express server on any VPS, Docker container, or PaaS. The Vercel serverless functions are optional — <code>server.js</code> handles everything.
+</details>
+
+<details>
+<summary><b>🎬 Which video hosts are supported?</b></summary>
+<br/>
+4 hosts: turbovidhls (MP4), kwik.cx (M3U8), blogger.com (embed), and a generic fallback. Not all hosts work for every episode — it depends on which host animepahe uses.
+</details>
+
+<details>
+<summary><b>❌ Why are streaming endpoints returning errors?</b></summary>
+<br/>
+DDoS-Guard blocks requests from datacenter IPs. The API auto-bypasses via Playwright cookie management. If that fails, try self-hosting on your own VPS or setting manual cookies via the <code>COOKIES</code> env var. See <a href="#-how-to-fix-streaming-issues">How to Fix Streaming Issues</a> above.
+</details>
+
+<details>
+<summary><b>📊 How do I check if streaming is working?</b></summary>
+<br/>
+Use <code>/api/scraper-status</code> to check the scraper state. It shows DDoS bypass status and cookie health.
 </details>
 
 ---
 
-## Roadmap
+## 🗺️ Roadmap
 
-### Planned Features
+### 🎯 Planned Features
 
-- [ ] API key authentication — per-user rate limits
-- [ ] Redis cache — persistent caching
-- [ ] Webhook notifications — push new episodes
-- [ ] Client SDK — NPM package for easy integration
-- [ ] OpenAPI/Swagger docs — interactive API explorer
+- [ ] 🔐 **API key authentication** — Per-user rate limits
+- [ ] 📊 **Analytics endpoint** — Usage statistics
+- [ ] 🗄️ **Redis cache** — Persistent caching for serverless
+- [ ] 🔔 **Webhook notifications** — Push new episodes to Discord
+- [ ] 📦 **NPM package** — Client SDK for easy integration
+- [ ] 📘 **Swagger UI interactive docs** — API explorer
+- [ ] 🌐 **Multi-language** — Sub/dub language metadata
 
-### Completed
+### ✅ Completed
 
-- [x] 18+ API endpoints
-- [x] Full-text search with pagination
-- [x] Search suggestions
-- [x] Streaming MP4/M3U8 extraction
-- [x] DDoS-Guard bypass via Playwright
-- [x] Multi-strategy HTTP client
-- [x] Smart caching with TTL
-- [x] Docker support
-- [x] Vercel/Render deployment
+- [x] 🎬 18+ API endpoints covering all data
+- [x] 🔍 Full-text search with pagination
+- [x] 💡 Search suggestions for autocomplete
+- [x] 🎥 Streaming MP4/M3U8 extraction
+- [x] 🛡️ DDoS-Guard bypass via Playwright
+- [x] 🌐 Multi-strategy HTTP client
+- [x] 🔄 Smart caching with configurable TTL
+- [x] 🐳 Docker support
+- [x] ▲ Vercel/Render deployment
 
 ---
 
-## Contributing
+## 🤝 Contributing
 
 Contributions are welcome! Please follow these steps:
 
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
+1. 🍴 Fork the repository
+2. 🌿 Create a feature branch (`git checkout -b feature/amazing-feature`)
+3. 💾 Commit your changes (`git commit -m 'Add amazing feature'`)
+4. 🚀 Push to the branch (`git push origin feature/amazing-feature`)
+5. 📬 Open a Pull Request
 
 ---
 
-## Acknowledgements
+## 🙏 Acknowledgements
 
-- [animepahe.ch](https://animepahe.ch) for the source data
-- [Cheerio](https://cheerio.js.org/) for HTML parsing
-- [Playwright](https://playwright.dev/) for browser automation
-- [Express](https://expressjs.com/) for the web framework
-- [MiruroAPI](https://github.com/Shineii86/MiruroAPI) for README inspiration
+- 🌸 [animepahe.ch](https://animepahe.ch) for the source data
+- 🔎 [Cheerio](https://cheerio.js.org/) for HTML parsing
+- 🎭 [Playwright](https://playwright.dev/) for browser automation
+- ⚡ [Express](https://expressjs.com/) for the web framework
+- 📺 [MiruroAPI](https://github.com/Shineii86/MiruroAPI) for README inspiration
 
 ---
 
-## License
+## 📄 License
 
 MIT License - see [LICENSE](LICENSE) file.
 
 ---
 
-## Author
+## 👤 Author
 
 **Shinei Nouzen** - [GitHub](https://github.com/Shineii86)
 
 <p align="center">
   <img src="https://capsule-render.vercel.app/api?type=waving&height=100&color=gradient&text=Made%20with%20%E2%9D%A4%20by%20Shinei%20Nouzen&fontSize=12" />
+</p>
+
+---
+
+## ⭐ Star History
+
+<p align="center">
+  <a href="https://star-history.com/#Shineii86/AnimePaheAPI&Date">
+    <picture>
+      <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=Shineii86/AnimePaheAPI&type=Date&theme=dark" />
+      <img alt="Star History Chart" src="https://api.star-history.com/svg?repos=Shineii86/AnimePaheAPI&type=Date&theme=light" />
+    </picture>
+  </a>
 </p>
