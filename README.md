@@ -1421,6 +1421,13 @@ Free to use, modify, and distribute — see the [LICENSE](LICENSE) file for deta
 
 <div align="center">
 
+  <a href="https://github.com/Shineii86">
+  <img src="https://github.com/AniWaifuBot/Waifus/blob/main/Source/Banner.png" alt="Banner" width="100%" />
+  </a>
+  
+</div>
+  
+<p align="center">
   <b style="font-size: 5.5em;">Shinei Nouzen</b>
   <br/>
   <sub>Full-Stack Developer & Anime Enthusiast</sub>
@@ -1429,7 +1436,7 @@ Free to use, modify, and distribute — see the [LICENSE](LICENSE) file for deta
   <a href="https://telegram.me/Shineii86"><img src="https://img.shields.io/badge/Telegram-2CA5E0?style=for-the-badge&logo=telegram&logoColor=white" alt="Telegram"/></a>
   <a href="https://instagram.com/ikx7.a"><img src="https://img.shields.io/badge/Instagram-C13584?style=for-the-badge&logo=instagram&logoColor=white" alt="Instagram"/></a>
   <a href="mailto:ikx7a@hotmail.com"><img src="https://img.shields.io/badge/Email-D14836?style=for-the-badge&logo=gmail&logoColor=white" alt="Email"/></a>
-</div>
+</p>
 
 ---
 
