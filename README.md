@@ -1420,6 +1420,8 @@ Use <code>/api/scraper-status</code> to check the scraper state. It shows DDoS b
 
 *Contributions are welcome and appreciated! Here's how you can help:*
 
+> 📖 **Read our [Contributing Guide](CONTRIBUTING.md)** for detailed instructions on how to contribute.
+
 <table>
 <tr>
 <td width="25%" align="center">
