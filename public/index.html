@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AnimePahe API - Free Anime Streaming Data API</title>
+  <meta name="description" content="Free RESTful API for anime data scraped from animepahe.ch. 32 endpoints, search, episodes, streaming info.">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      background: #0a0a0f;
+      color: #e2e8f0;
+      min-height: 100vh;
+    }
+    .container { max-width: 900px; margin: 0 auto; padding: 2rem; }
+    header { text-align: center; padding: 3rem 0; }
+    h1 { font-size: 2.5rem; margin-bottom: 0.5rem; background: linear-gradient(135deg, #a78bfa, #f43f5e); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .subtitle { color: #94a3b8; font-size: 1.1rem; }
+    .badges { display: flex; gap: 0.5rem; justify-content: center; margin-top: 1.5rem; flex-wrap: wrap; }
+    .badge { padding: 0.3rem 0.8rem; border-radius: 999px; font-size: 0.75rem; font-weight: 600; }
+    .badge-green { background: #16a34a20; color: #4ade80; border: 1px solid #16a34a40; }
+    .badge-purple { background: #9333ea20; color: #c084fc; border: 1px solid #9333ea40; }
+    .badge-blue { background: #2563eb20; color: #60a5fa; border: 1px solid #2563eb40; }
+    .section { margin-top: 2rem; }
+    .section h2 { font-size: 1.3rem; margin-bottom: 1rem; color: #f8fafc; }
+    .endpoint-list { display: grid; gap: 0.5rem; }
+    .endpoint {
+      display: flex; align-items: center; gap: 0.75rem;
+      padding: 0.75rem 1rem; background: #1e1e2e; border-radius: 8px;
+      border: 1px solid #ffffff10; transition: border-color 0.2s;
+    }
+    .endpoint:hover { border-color: #a78bfa40; }
+    .method { padding: 0.2rem 0.5rem; border-radius: 4px; font-size: 0.7rem; font-weight: 700; background: #16a34a20; color: #4ade80; min-width: 40px; text-align: center; }
+    .path { font-family: monospace; font-size: 0.9rem; color: #e2e8f0; }
+    .desc { color: #94a3b8; font-size: 0.8rem; margin-left: auto; }
+    .code-block { background: #1e1e2e; border-radius: 8px; padding: 1rem; margin-top: 1rem; overflow-x: auto; border: 1px solid #ffffff10; }
+    .code-block code { font-family: monospace; font-size: 0.85rem; color: #c084fc; }
+    .code-block .comment { color: #6b7280; }
+    .code-block .string { color: #4ade80; }
+    a { color: #a78bfa; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .footer { text-align: center; margin-top: 3rem; padding: 2rem 0; border-top: 1px solid #ffffff10; color: #6b7280; font-size: 0.85rem; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>AnimePahe API</h1>
+      <p class="subtitle">Free RESTful API for anime data scraped from animepahe.ch</p>
+      <div class="badges">
+        <span class="badge badge-green">32 Endpoints</span>
+        <span class="badge badge-purple">Node.js + Express</span>
+        <span class="badge badge-blue">Zero Database</span>
+      </div>
+    </header>
+
+    <div class="section">
+      <h2>Base URL</h2>
+      <div class="code-block">
+        <code>https://animepaheapi.vercel.app/api</code>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>Quick Start</h2>
+      <div class="code-block">
+        <code>
+          <span class="comment">// Search anime</span><br>
+          curl "https://animepaheapi.vercel.app/api/search?query=naruto"<br><br>
+          <span class="comment">// Get anime info</span><br>
+          curl "https://animepaheapi.vercel.app/api/info/one-piece"<br><br>
+          <span class="comment">// Get episodes</span><br>
+          curl "https://animepaheapi.vercel.app/api/episodes/one-piece"
+        </code>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>API Endpoints</h2>
+      <div class="endpoint-list">
+        <div class="endpoint"><span class="method">GET</span><span class="path">/api/health</span><span class="desc">Health check</span></div>
+        <div class="endpoint"><span class="method">GET</span><span class="path">/api/stats</span><span class="desc">API stats</span></div>
+        <div class="endpoint"><span class="method">GET</span><span class="path">/api/</span><span class="desc">Home (latest, trending, popular)</span></div>
+        <div class="endpoint"><span class="method">GET</span><span class="path">/api/search?query=</span><span class="desc">Search anime</span></div>
+        <div class="endpoint"><span class="method">GET</span><span class="path">/api/suggestions?query=</span><span class="desc">Search suggestions</span></div>
+        <div class="endpoint"><span class="method">GET</span><span class="path">/api/info/:slug</span><span class="desc">Anime details</span></div>
+        <div class="endpoint"><span class="method">GET</span><span class="path">/api/episodes/:slug</span><span class="desc">Episode list</span></div>
+        <div class="endpoint"><span class="method">GET</span><span class="path">/api/watch/:slug</span><span class="desc">Watch page data</span></div>
+        <div class="endpoint"><span class="method">GET</span><span class="path">/api/series</span><span class="desc">Browse series</span></div>
+        <div class="endpoint"><span class="method">GET</span><span class="path">/api/az-list</span><span class="desc">A-Z list</span></div>
+        <div class="endpoint"><span class="method">GET</span><span class="path">/api/az-list/:letter</span><span class="desc">A-Z by letter</span></div>
+        <div class="endpoint"><span class="method">GET</span><span class="path">/api/season</span><span class="desc">All seasons</span></div>
+        <div class="endpoint"><span class="method">GET</span><span class="path">/api/season/:name</span><span class="desc">Season anime</span></div>
+        <div class="endpoint"><span class="method">GET</span><span class="path">/api/genres</span><span class="desc">All genres</span></div>
+        <div class="endpoint"><span class="method">GET</span><span class="path">/api/genres/:name</span><span class="desc">Genre filter</span></div>
+        <div class="endpoint"><span class="method">GET</span><span class="path">/api/category/:name</span><span class="desc">Category filter</span></div>
+        <div class="endpoint"><span class="method">GET</span><span class="path">/api/studio/:name</span><span class="desc">Studio filter</span></div>
+        <div class="endpoint"><span class="method">GET</span><span class="path">/api/tag/:name</span><span class="desc">Tag filter</span></div>
+        <div class="endpoint"><span class="method">GET</span><span class="path">/api/trending</span><span class="desc">Trending anime</span></div>
+        <div class="endpoint"><span class="method">GET</span><span class="path">/api/popular</span><span class="desc">Popular anime</span></div>
+        <div class="endpoint"><span class="method">GET</span><span class="path">/api/recent</span><span class="desc">Recent releases</span></div>
+        <div class="endpoint"><span class="method">GET</span><span class="path">/api/bookmark</span><span class="desc">Bookmarked anime</span></div>
+        <div class="endpoint"><span class="method">GET</span><span class="path">/api/page/:num</span><span class="desc">Paginated home</span></div>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>Response Format</h2>
+      <div class="code-block">
+        <code>
+          {<br>
+          &nbsp;&nbsp;"success": true,<br>
+          &nbsp;&nbsp;"results": { ... }<br>
+          }
+        </code>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>Deployment</h2>
+      <div class="code-block">
+        <code>
+          <span class="comment"># Clone and install</span><br>
+          git clone https://github.com/Shineii86/AnimePaheAPI.git<br>
+          cd AnimePaheAPI && npm install<br><br>
+          <span class="comment"># Run locally</span><br>
+          npm run dev<br><br>
+          <span class="comment"># Deploy to Vercel</span><br>
+          vercel deploy
+        </code>
+      </div>
+    </div>
+
+    <div class="footer">
+      <p>AnimePahe API &mdash; Educational purposes only. Not affiliated with animepahe.ch.</p>
+      <p>All content belongs to respective owners.</p>
+    </div>
+  </div>
+</body>
+</html>
