@@ -20,7 +20,7 @@
   <img src="https://img.shields.io/badge/Cheerio-1.0-3972B3?style=flat-square&logoColor=white" alt="Cheerio"/>
   <img src="https://img.shields.io/badge/Docker-Ready-2496ED?style=flat-square&logo=docker&logoColor=white" alt="Docker"/>
   <img src="https://img.shields.io/badge/Version-1.0.0-f43f8e?style=flat-square&logoColor=white" alt="Version"/>
-  <img src="https://img.shields.io/badge/Endpoints-18+-6366f1?style=flat-square&logoColor=white" alt="Endpoints"/>
+  <img src="https://img.shields.io/badge/Endpoints-21+-6366f1?style=flat-square&logoColor=white" alt="Endpoints"/>
   <img src="https://img.shields.io/badge/Streaming-MP4%20%7C%20M3U8-22c55e?style=flat-square&logoColor=white" alt="Streaming"/>
   <img src="https://img.shields.io/badge/License-MIT-22c55e?style=flat-square&logo=mit&logoColor=white" alt="License"/>
 </p>
@@ -28,7 +28,7 @@
 <p align="center">
   <b>A complete RESTful API for anime streaming data scraped from animepahe.ch</b><br/>
   Search, browse, watch — every endpoint returns fresh data with smart caching.<br/>
-  18+ endpoints, streaming MP4/M3U8 URLs, DDoS-Guard bypass, and auto cookie management.
+  21+ endpoints, streaming MP4/M3U8 URLs, DDoS-Guard bypass, and auto cookie management.
 </p>
 
 <p align="center">
@@ -88,7 +88,7 @@
 
 ### Why AnimePaheAPI?
 
-- 🎬 **18+ API Endpoints** — Complete anime data coverage
+- 🎬 **21+ API Endpoints** — Complete anime data coverage
 - 🎥 **Streaming URLs** — MP4 and M3U8 streaming sources extracted from iframes
 - 🛡️ **Automatic DDoS bypass** — Cookie management via Playwright browser
 - 🌐 **Multi-strategy HTTP** — got-scraping + axios + Playwright fallback
@@ -135,7 +135,7 @@ flowchart TD
     <td>
 
 ### ⚡ Core
-- **18+ RESTful endpoints**
+- **21+ RESTful endpoints**
 - **Smart caching** with configurable TTL
 - **Gzip compression** — 30-70% smaller responses
 - **Request logging** — method, path, status, duration
@@ -188,7 +188,7 @@ flowchart TD
 
 | Feature | Description | Status |
 |:---|:---|:---:|
-| 🎬 18+ API Endpoints | Complete anime data coverage | ✅ |
+| 🎬 21+ API Endpoints | Complete anime data coverage | ✅ |
 | 🔍 Full-Text Search | Keyword search with pagination | ✅ |
 | 💡 Search Suggestions | Fast autocomplete | ✅ |
 | ℹ️ Anime Info | Detailed metadata extraction | ✅ |
@@ -362,7 +362,7 @@ AnimePaheAPI/
     │   └── 📄 playModel.js                 #       🎥 Streaming extraction
     │
     ├── 📂 routes/                          #    🛤️ Routes
-    │   └── 📄 apiRoutes.js                 #       🌐 18+ endpoints
+    │   └── 📄 apiRoutes.js                 #       🌐 21+ endpoints
     │
     ├── 📂 scrapers/                        #    🕷️ Scrapers
     │   └── 📄 animepahe.js                 #       🕷️ Core scraper + DDoS bypass
@@ -874,6 +874,110 @@ console.log(resp.data);
 
 ---
 
+> ## 📋 GET Anime List
+
+### Endpoint
+
+```bash
+/anime
+/anime/:tag1/:tag2
+```
+
+#### Parameters
+
+| Parameter | Type | Mandatory | Default | Description |
+| :-------: | :--: | :-------: | :-----: | :---------: |
+| `tag1` | `string` | No | — | Filter type: `genre`, `studio`, `tag`, `category` |
+| `tag2` | `string` | No | — | Filter value: `action`, `comedy`, `movie`, etc. |
+
+#### Example of request
+
+```bash
+# Root anime list
+curl "http://localhost:3000/api/anime"
+
+# Filter by genre
+curl "http://localhost:3000/api/anime/genre/action"
+
+# Filter by type
+curl "http://localhost:3000/api/anime/type/movie"
+```
+
+```javascript
+import axios from "axios";
+const resp = await axios.get("http://localhost:3000/api/anime/genre/action");
+console.log(resp.data);
+```
+
+#### Sample Response
+
+```json
+{
+  "success": true,
+  "results": {
+    "title": "Action",
+    "results": [
+      {
+        "slug": "one-piece",
+        "title": "One Piece",
+        "poster": "https://animepahe.ch/wp-content/uploads/...",
+        "type": "Anime",
+        "url": "https://animepahe.ch/series/one-piece/"
+      }
+    ],
+    "currentPage": 1,
+    "hasNextPage": true
+  }
+}
+```
+
+---
+
+> ## 📥 GET Direct Download Links
+
+### Endpoint
+
+```bash
+/play/download-links
+```
+
+#### Parameters
+
+| Parameter | Type | Mandatory | Default | Description |
+| :-------: | :--: | :-------: | :-----: | :---------: |
+| `url` | `string` | Yes ✔️ | — | Pahewin download page URL |
+
+#### Example of request
+
+```bash
+curl "http://localhost:3000/api/play/download-links?url=https://pahe.win/XYZ"
+```
+
+```javascript
+import axios from "axios";
+const resp = await axios.get("http://localhost:3000/api/play/download-links", {
+  params: { url: "https://pahe.win/XYZ" }
+});
+console.log(resp.data);
+```
+
+#### Sample Response
+
+```json
+{
+  "success": true,
+  "results": {
+    "downloadUrl": "https://...mp4",
+    "filename": "Episode 1 - One Piece.mp4",
+    "type": "direct_download"
+  }
+}
+```
+
+> **Note:** When downloading the direct `.mp4` video, you MUST pass the `Referer` header to avoid errors.
+
+---
+
 > ## 🏥 GET Health Check
 
 ### Endpoint
@@ -1158,7 +1262,7 @@ npm start
 
 | Version | Date | Key Changes |
 |:---|:---|:---|
-| **1.0.0** | 2026-07-23 | Initial release — 18+ endpoints, streaming MP4/M3U8, DDoS bypass, modular architecture |
+| **1.0.0** | 2026-07-23 | Initial release — 21+ endpoints, streaming MP4/M3U8, DDoS bypass, modular architecture |
 
 > 📝 See [CHANGELOG.md](./CHANGELOG.md) for the full version history.
 
@@ -1297,7 +1401,7 @@ Use <code>/api/scraper-status</code> to check the scraper state. It shows DDoS b
 
 ### ✅ Completed
 
-- [x] 🎬 18+ API endpoints covering all data
+- [x] 🎬 21+ API endpoints covering all data
 - [x] 🔍 Full-text search with pagination
 - [x] 💡 Search suggestions for autocomplete
 - [x] 🎥 Streaming MP4/M3U8 extraction

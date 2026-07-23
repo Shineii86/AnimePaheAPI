@@ -370,6 +370,75 @@ router.get('/series', asyncHandler(async (req, res) => {
   res.json({ success: true, results: data });
 }));
 
+// ---- FEATURE: Anime list (root) ----
+/**
+ * GET /api/anime
+ * Returns the full anime list (same as series).
+ *
+ * @description
+ *   Root endpoint for the anime list. Returns all anime
+ *   from the series catalog page.
+ */
+router.get('/anime', asyncHandler(async (req, res) => {
+  const cacheKey = 'anime';
+  const cached = cache.get(cacheKey);
+  if (cached) return res.json({ success: true, results: cached });
+
+  const $ = await fetchPage(URLS.series);
+  const data = extractSeries($);
+
+  cache.set(cacheKey, data, CACHE_TTL.filter);
+  res.json({ success: true, results: data });
+}));
+
+// ---- FEATURE: Anime list with tag filters ----
+/**
+ * GET /api/anime/:tag1/:tag2
+ * Returns anime filtered by tag category and value.
+ *
+ * @description
+ *   Browse anime by filter categories. The first parameter (tag1)
+ *   determines the filter type, and the second (tag2) is the value.
+ *
+ * @param {string} tag1 - Filter type: genre, theme, type, status
+ * @param {string} tag2 - Filter value: action, comedy, movie, etc.
+ *
+ * @example
+ *   GET /api/anime/genre/action
+ *   GET /api/anime/type/movie
+ *   GET /api/anime/genre/fantasy/thriller
+ */
+router.get('/anime/:tag1/:tag2', asyncHandler(async (req, res) => {
+  const { tag1, tag2 } = req.params;
+  const cacheKey = `anime:${tag1}:${tag2}`;
+  const cached = cache.get(cacheKey);
+  if (cached) return res.json({ success: true, results: cached });
+
+  let url;
+  switch (tag1) {
+    case 'genre':
+      url = URLS.genre(tag2);
+      break;
+    case 'studio':
+      url = URLS.studio(tag2);
+      break;
+    case 'tag':
+      url = URLS.tag(tag2);
+      break;
+    case 'category':
+      url = URLS.category(tag2);
+      break;
+    default:
+      url = URLS.genre(tag2);
+  }
+
+  const $ = await fetchPage(url);
+  const data = extractSeries($);
+
+  cache.set(cacheKey, data, CACHE_TTL.filter);
+  res.json({ success: true, results: data });
+}));
+
 // ══════════════════════════════════════════════════════════════
 // STREAMING & DOWNLOADS
 // ══════════════════════════════════════════════════════════════
@@ -396,6 +465,37 @@ async function ensureScraper() {
     }
   }
 }
+
+// ---- FEATURE: Direct download links from pahewin ----
+/**
+ * GET /api/play/download-links?url={pahewinUrl}
+ * Extracts direct download URLs from pahewin pages.
+ *
+ * @description
+ *   Given a pahewin download page URL, extracts the direct MP4
+ *   download link. Supports both kwik.cx and direct download pages.
+ *
+ * @query {string} url - Pahewin download page URL (required)
+ *
+ * @example
+ *   GET /api/play/download-links?url=https://pahe.win/XYZ
+ *   // => { downloadUrl: "https://...mp4", filename: "episode.mp4" }
+ */
+router.get('/play/download-links', asyncHandler(async (req, res) => {
+  const { url } = req.query;
+  if (!url) return res.status(400).json({ success: false, message: 'Query parameter "url" is required' });
+
+  const cacheKey = `download:${url}`;
+  const cached = cache.get(cacheKey);
+  if (cached) return res.json({ success: true, results: cached });
+
+  await ensureScraper();
+
+  const data = await animepahe.scrapeDownloadLinks(url);
+
+  cache.set(cacheKey, data, CACHE_TTL.episodes);
+  res.json({ success: true, results: data });
+}));
 
 // ---- FEATURE: Streaming links endpoint ----
 /**
@@ -560,7 +660,7 @@ router.get('/stats', (req, res) => {
         memory: process.memoryUsage(),
         nodeVersion: process.version,
       },
-      endpoints: 38,
+      endpoints: 41,
     },
   });
 });
@@ -600,7 +700,10 @@ router.get('/docs', (req, res) => {
       '/api/az-list': { get: { summary: 'A-Z listing', tags: ['Browse'] } },
       '/api/season': { get: { summary: 'Season listing', tags: ['Browse'] } },
       '/api/series': { get: { summary: 'Series catalog', tags: ['Browse'] } },
+      '/api/anime': { get: { summary: 'Anime list (root)', tags: ['Browse'] } },
+      '/api/anime/:tag1/:tag2': { get: { summary: 'Anime by tag filter', tags: ['Browse'] } },
       '/api/play/:animeSession/:episodeSession': { get: { summary: 'Streaming links + downloads', tags: ['Streaming'] } },
+      '/api/play/download-links': { get: { summary: 'Direct download links from pahewin', tags: ['Streaming'] } },
       '/api/airing': { get: { summary: 'Currently airing anime', tags: ['Streaming'] } },
       '/api/queue': { get: { summary: 'Encoding queue status', tags: ['Streaming'] } },
       '/api/refresh-cookies': { post: { summary: 'Force cookie refresh', tags: ['Streaming'] } },
